@@ -21,7 +21,7 @@ import edu.upc.eseiaat.pma.shoppinglist2.R;
 public class Shoppinglistactivity extends AppCompatActivity {
 
     //una lista siempre necesita unos datos, un array por lo tanto:
-    private ArrayList<String> itemlist;
+    private ArrayList<ShoppingItem> itemlist;
     //una lista siempre necesita un adaptador tambien por lo tanto:
     private ShoppingListAdapter adapter;
 
@@ -38,10 +38,10 @@ public class Shoppinglistactivity extends AppCompatActivity {
         btn_add = (Button) findViewById(R.id.btn_añadir);
         edit_item = (EditText) findViewById(R.id.edititem);//cajetilla
         itemlist = new ArrayList<>();
-        itemlist.add("Patatas");
-        itemlist.add("Papel WC");
-        itemlist.add("Zanahoria");
-        itemlist.add("CopasDanone");
+        itemlist.add( new ShoppingItem("Patatas",  true));
+        itemlist.add(new ShoppingItem("zanahoria", true));
+        itemlist.add(new ShoppingItem("papael"));
+        itemlist.add(new ShoppingItem("copas"));
         adapter = new ShoppingListAdapter(this, R.layout.shopping_item, itemlist);//this por esta clase, simple list item es el que queremos, itemlist es como hemos llamado a los datos que van a ir dentro
 
         //mirar contenido de la cajita, y meterlo en la lista cuando le de al botón(listener)
@@ -64,6 +64,15 @@ public class Shoppinglistactivity extends AppCompatActivity {
 
         list.setAdapter(adapter);//con este adapter meteremos lo que hay en el arraylist(itemlist) en la lista(list)
 
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+
+                itemlist.get(position).togglechecked();
+                adapter.notifyDataSetChanged();
+            }
+        });
+
         list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             //creamos un listener en la misma lista para cuando cliquemos durante unos segundos
             @Override
@@ -78,7 +87,7 @@ public class Shoppinglistactivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);//creamos un cuadro de dialogo
         builder.setTitle(R.string.confirm); //Le ponemos un titulo a través de un recurso string a la confirmación de borrado
         String fmt = getResources().getString(R.string.confirmmessage);
-        builder.setMessage(String.format(fmt, itemlist.get(pos))); //hacemos que salga el mensaje junto al elemento que queremos borrar con un format pasandole el pos de ese elemento
+        builder.setMessage(String.format(fmt, itemlist.get(pos).getText())); //hacemos que salga el mensaje junto al elemento que queremos borrar con un format pasandole el pos de ese elemento
         builder.setPositiveButton(R.string.remove, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -96,10 +105,11 @@ public class Shoppinglistactivity extends AppCompatActivity {
         //creo un string con item text i le digo que lo coja de edit_item(cajetilla)
         String item_text = edit_item.getText().toString();
         if (!item_text.isEmpty()) { //si item_text NO esta vacio ( !isEmpty ) añadelo
-            itemlist.add(item_text); //añado lo escrito en la cajetilla a la lista
+            itemlist.add(new ShoppingItem(item_text)); //añado lo escrito en la cajetilla a la lista
             adapter.notifyDataSetChanged(); //aviso al adaptador que hay algo que ha cambiado(he añadido uno a la lista
             edit_item.setText(""); //cuando ya haya añadido lo que quiero borro lo que hay en la cajetilla
         }
+        list.smoothScrollToPosition(itemlist.size()-1);
     }
 }
 
