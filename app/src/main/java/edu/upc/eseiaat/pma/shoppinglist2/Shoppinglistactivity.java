@@ -23,7 +23,7 @@ public class Shoppinglistactivity extends AppCompatActivity {
     //una lista siempre necesita unos datos, un array por lo tanto:
     private ArrayList<String> itemlist;
     //una lista siempre necesita un adaptador tambien por lo tanto:
-    private ArrayAdapter<String> adapter;
+    private ShoppingListAdapter adapter;
 
     private ListView list;
     private Button btn_add;
@@ -42,7 +42,7 @@ public class Shoppinglistactivity extends AppCompatActivity {
         itemlist.add("Papel WC");
         itemlist.add("Zanahoria");
         itemlist.add("CopasDanone");
-        adapter = new ArrayAdapter<String>(this, R.layout.shopping_item, itemlist);//this por esta clase, simple list item es el que queremos, itemlist es como hemos llamado a los datos que van a ir dentro
+        adapter = new ShoppingListAdapter(this, R.layout.shopping_item, itemlist);//this por esta clase, simple list item es el que queremos, itemlist es como hemos llamado a los datos que van a ir dentro
 
         //mirar contenido de la cajita, y meterlo en la lista cuando le de al botón(listener)
         btn_add.setOnClickListener(new View.OnClickListener() {
