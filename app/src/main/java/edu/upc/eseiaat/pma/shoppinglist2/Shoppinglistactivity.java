@@ -1,4 +1,4 @@
-package edu.upc.eseiaat.pma.shoppinglist1;
+package edu.upc.eseiaat.pma.shoppinglist2;
 
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
@@ -16,6 +16,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import edu.upc.eseiaat.pma.shoppinglist2.R;
+
 public class Shoppinglistactivity extends AppCompatActivity {
 
     //una lista siempre necesita unos datos, un array por lo tanto:
@@ -26,7 +28,6 @@ public class Shoppinglistactivity extends AppCompatActivity {
     private ListView list;
     private Button btn_add;
     private EditText edit_item;
-
 
 
     @Override
@@ -41,7 +42,7 @@ public class Shoppinglistactivity extends AppCompatActivity {
         itemlist.add("Papel WC");
         itemlist.add("Zanahoria");
         itemlist.add("CopasDanone");
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, itemlist);//this por esta clase, simple list item es el que queremos, itemlist es como hemos llamado a los datos que van a ir dentro
+        adapter = new ArrayAdapter<String>(this, R.layout.shopping_item, itemlist);//this por esta clase, simple list item es el que queremos, itemlist es como hemos llamado a los datos que van a ir dentro
 
         //mirar contenido de la cajita, y meterlo en la lista cuando le de al botón(listener)
         btn_add.setOnClickListener(new View.OnClickListener() {
@@ -67,13 +68,11 @@ public class Shoppinglistactivity extends AppCompatActivity {
             //creamos un listener en la misma lista para cuando cliquemos durante unos segundos
             @Override
             public boolean onItemLongClick(AdapterView<?> list, View item, int pos, long id) {
-                maybeRemoveItem(pos); //creamos un metodo para borrar un elemento de la lista i pasamos la posicion para saber quien el que borro
+                maybeRemoveItem(pos); //creamos un metodo para borrar un elemento de la lista i pasamos la posicion para saber el que borro con cuadro de dialogo
                 return true;
             }
         });
     }
-
-
 
     private void maybeRemoveItem(final int pos) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);//creamos un cuadro de dialogo

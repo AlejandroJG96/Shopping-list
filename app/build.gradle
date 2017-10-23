@@ -4,7 +4,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "26.0.2"
     defaultConfig {
-        applicationId "edu.upc.eseiaat.pma.shoppinglist1"
+        applicationId "edu.upc.eseiaat.pma.shoppinglist2"
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1

@@ -2,6 +2,6 @@
     <string name="app_name">Shopping list 1</string>
     <string name="confirm">confirmation</string>
     <string name="remove">remove</string>
-    <string name="confirmmessage">Are you sure you want to remove \'%1$s\' ?</string>
+    <string name="confirmmessage">Are you sure you want to remove \'%s\' ?</string>
 </resources>
 
