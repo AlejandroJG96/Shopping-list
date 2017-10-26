@@ -1,24 +1,26 @@
-package edu.upc.eseiaat.pma.shoppinglist2;
+package edu.upc.eseiaat.pma.shoppinglist3;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
-import edu.upc.eseiaat.pma.shoppinglist2.R;
-
 public class Shoppinglistactivity extends AppCompatActivity {
+    private static final String FILENAME = "shopping_list.txt";//ponemos una constante en la clase / static porque solo hay una coia de e/final porque no cambiará
 
     //una lista siempre necesita unos datos, un array por lo tanto:
     private ArrayList<ShoppingItem> itemlist;
@@ -28,7 +30,30 @@ public class Shoppinglistactivity extends AppCompatActivity {
     private ListView list;
     private Button btn_add;
     private EditText edit_item;
+   private void writeItemlist(){
 
+
+       try {
+           FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
+           for(int i=0;i<itemlist.size();i++){//pasamos por todos los objetos de la lista
+               ShoppingItem it = itemlist.get(i);//cogemos el item
+               String line = String.format("%s;%b\n", it.getText(),it.isChecked());//metemos un string y luego un booleano que son respectivamente it.getText y is Checked
+               fos.write(line.getBytes());//grabo la linea en el fichero fos
+           }
+           fos.close();//lo cerramos
+       } catch (FileNotFoundException e) {
+           Toast.makeText(this, R.string.cannot_write, Toast.LENGTH_SHORT).show();//excepcion de no encontrar
+       } catch (IOException e) {
+           Toast.makeText(this, R.string.cannot_write, Toast.LENGTH_SHORT).show();
+       }
+
+   }
+
+    @Override
+    protected void onStop() {//cuando la aplicacion para por cualquier cosa s
+        super.onStop();
+        writeItemlist();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

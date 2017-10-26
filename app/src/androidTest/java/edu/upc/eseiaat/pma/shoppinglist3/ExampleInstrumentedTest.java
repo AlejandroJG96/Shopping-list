@@ -1,4 +1,4 @@
-package edu.upc.eseiaat.pma.shoppinglist1;
+package edu.upc.eseiaat.pma.shoppinglist3;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

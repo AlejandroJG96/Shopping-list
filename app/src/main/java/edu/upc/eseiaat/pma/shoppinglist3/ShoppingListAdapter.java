@@ -1,4 +1,4 @@
-package edu.upc.eseiaat.pma.shoppinglist2;
+package edu.upc.eseiaat.pma.shoppinglist3;
 
 import android.content.Context;
 import android.support.annotation.LayoutRes;
@@ -11,7 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 
 import java.util.List;
-import java.util.zip.Inflater;
 
 /**
  * Created by Usuari on 23/10/2017.

@@ -1,4 +1,4 @@
-package edu.upc.eseiaat.pma.shoppinglist1;
+package edu.upc.eseiaat.pma.shoppinglist3;
 
 import org.junit.Test;
 

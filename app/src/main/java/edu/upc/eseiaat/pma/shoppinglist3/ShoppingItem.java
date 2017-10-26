@@ -1,4 +1,4 @@
-package edu.upc.eseiaat.pma.shoppinglist2;
+package edu.upc.eseiaat.pma.shoppinglist3;
 
 /**
  * Created by Usuari on 23/10/2017.

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="edu.upc.eseiaat.pma.shoppinglist1.edu.upc.eseiaat.pma.shoppinglist2.Shoppinglistactivity">
+    tools:context="edu.upc.eseiaat.pma.shoppinglist3.Shoppinglistactivity">
 
     <RelativeLayout
         android:id="@+id/editbox"
